@@ -161,6 +161,13 @@ impl Cid {
             Version::V1 => Ok(multibase::encode(base, self.to_bytes())),
         }
     }
+
+    /// Useful for debug messages.
+    #[cfg(feature = "std")]
+    pub fn short(&self) -> String {
+        let text = self.to_string();
+        text.split_at(text.len() - 6).1.to_string()
+    }
 }
 
 impl Default for Cid {
